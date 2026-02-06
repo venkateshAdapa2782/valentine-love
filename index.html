@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Valentine's Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="hero__content">
+          <p class="tag">To my favorite person</p>
+          <h1>
+            Happy Valentine's Day,
+            <span class="name">My Love</span>
+          </h1>
+          <p class="lede">
+            You are my calm, my chaos, my home. Every moment with you feels like
+            a soft sunrise and a wild spark at the same time.
+          </p>
+          <div class="cta-row">
+            <button class="cta">Forever yours</button>
+            <span class="sub">February 14</span>
+          </div>
+        </div>
+        <div class="hero__card">
+          <div class="card__top">
+            <span class="seal">Love Letter</span>
+            <span class="stamp">2026</span>
+          </div>
+          <h2>Reasons I adore you</h2>
+          <ul class="reasons">
+            <li>Your smile is my favorite view.</li>
+            <li>You make ordinary days feel magical.</li>
+            <li>Your kindness makes me want to be better.</li>
+            <li>You always feel like home.</li>
+          </ul>
+          <p class="signature">Always and only, <span>Your Name</span></p>
+        </div>
+      </section>
+
+      <section class="moments">
+        <div class="moments__header">
+          <h3>Our little universe</h3>
+          <p>
+            Every laugh, every adventure, every quiet moment with you is a star I
+            keep close.
+          </p>
+        </div>
+        <div class="moments__grid">
+          <article class="moment">
+            <h4>First time I knew</h4>
+            <p>That look, that spark. I felt it instantly.</p>
+          </article>
+          <article class="moment">
+            <h4>Favorite memory</h4>
+            <p>We laughed until we cried, and I felt so lucky.</p>
+          </article>
+          <article class="moment">
+            <h4>Everyday magic</h4>
+            <p>Even on the busiest days, you make life feel soft.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="promise">
+        <h3>My wish</h3>
+        <p>
+          I will love you loudly on bright days and quietly on the hard ones.
+          Today and every day, I choose you.
+        </p>
+      </section>
+
+      <section class="love-play">
+        <div class="love-play__header">
+          <h3>Love Play</h3>
+          <p class="question">Do you love me?</p>
+        </div>
+        <div class="play-area">
+          <div class="button-row">
+            <button class="choice js-yes">Yes</button>
+            <button class="choice choice--ghost js-no">No</button>
+          </div>
+          <p class="tease-line">Catch the yes if you can.</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="floating-hearts" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="teddy-overlay" aria-hidden="true"></div>
+    <div class="teddy-reveal" role="dialog" aria-modal="true">
+      <button class="teddy-close" aria-label="Close">×</button>
+      <div class="teddy">
+        <div class="teddy__ear teddy__ear--left"></div>
+        <div class="teddy__ear teddy__ear--right"></div>
+        <div class="teddy__face">
+          <div class="teddy__eye teddy__eye--left"></div>
+          <div class="teddy__eye teddy__eye--right"></div>
+          <div class="teddy__nose"></div>
+        </div>
+        <div class="teddy__heart">LOVE</div>
+      </div>
+      <h3>You clicked yes!</h3>
+      <p>
+        I love you more than words, more than stars, more than all the little
+        moments we keep. Happy Valentine's Day, my heart.
+      </p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
