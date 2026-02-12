@@ -47,7 +47,30 @@
     }
   }
 
+  function enablePlayOnInteraction() {
+    const unlockEvents = ["pointerdown", "touchstart", "keydown", "click"];
+
+    function unlock() {
+      audio.play().catch(function () {
+        // Keep listeners until a successful play.
+      });
+      if (!audio.paused) {
+        unlockEvents.forEach(function (eventName) {
+          window.removeEventListener(eventName, unlock, true);
+        });
+      }
+    }
+
+    unlockEvents.forEach(function (eventName) {
+      window.addEventListener(eventName, unlock, true);
+    });
+  }
+
   restoreState();
+  audio.play().catch(function () {
+    // First-load autoplay can be blocked; start on first interaction.
+  });
+  enablePlayOnInteraction();
   audio.addEventListener("timeupdate", saveState);
   window.addEventListener("pagehide", saveState);
   window.addEventListener("beforeunload", saveState);
