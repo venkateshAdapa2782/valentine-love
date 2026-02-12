@@ -18,7 +18,7 @@ const yesMessages = [
   "My heart is cheering yes.",
 ];
 
-let remainingMs = 30000;
+let remainingMs = 15000;
 let activeStart = null;
 let teaseTimer = null;
 let unlockTimer = null;
@@ -146,10 +146,7 @@ function typeText() {
 }
 
 function navigateWithFade(url) {
-  document.body.classList.add("fade-out");
-  setTimeout(() => {
-    window.location.href = url;
-  }, 320);
+  window.location.href = url;
 }
 
 typeText();
