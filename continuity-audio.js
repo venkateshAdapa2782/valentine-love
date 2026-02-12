@@ -49,16 +49,38 @@
 
   function enablePlayOnInteraction() {
     const unlockEvents = ["pointerdown", "touchstart", "keydown", "click"];
+    let unlocked = false;
+
+    function removeUnlockListeners() {
+      unlockEvents.forEach(function (eventName) {
+        window.removeEventListener(eventName, unlock, true);
+      });
+    }
 
     function unlock() {
-      audio.play().catch(function () {
-        // Keep listeners until a successful play.
-      });
-      if (!audio.paused) {
-        unlockEvents.forEach(function (eventName) {
-          window.removeEventListener(eventName, unlock, true);
-        });
+      if (unlocked) return;
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(function () {
+            unlocked = true;
+            removeUnlockListeners();
+            saveState();
+          })
+          .catch(function () {
+            // Keep listeners until a successful play.
+          });
+      } else if (!audio.paused) {
+        unlocked = true;
+        removeUnlockListeners();
+        saveState();
       }
+    }
+
+    if (!audio.paused) {
+      unlocked = true;
+      removeUnlockListeners();
+      return;
     }
 
     unlockEvents.forEach(function (eventName) {
@@ -66,11 +88,25 @@
     });
   }
 
+  function tryAutoPlay() {
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.then === "function") {
+      playPromise
+        .then(function () {
+          saveState();
+        })
+        .catch(function () {
+          // First-load autoplay can be blocked; interaction fallback will handle it.
+        });
+    } else if (!audio.paused) {
+      saveState();
+    }
+  }
+
   restoreState();
-  audio.play().catch(function () {
-    // First-load autoplay can be blocked; start on first interaction.
-  });
+  tryAutoPlay();
   enablePlayOnInteraction();
+  audio.addEventListener("play", saveState);
   audio.addEventListener("timeupdate", saveState);
   window.addEventListener("pagehide", saveState);
   window.addEventListener("beforeunload", saveState);
